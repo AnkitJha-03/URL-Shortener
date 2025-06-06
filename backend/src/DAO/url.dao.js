@@ -1,11 +1,12 @@
 import URL from "../models/url_schema.model.js";
 import { ConflictError, NotFoundError } from "../utils/error_handler.util.js";
 
-export const save_short_url = async (long_url, short_url) => {
+export const save_short_url = async (long_url, short_url, user) => {
   try {
     const new_url = new URL({
       long_url,
       short_url,
+      user
     });
   
     await new_url.save();

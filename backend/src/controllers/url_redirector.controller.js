@@ -1,5 +1,5 @@
 import wrapAsync from "../utils/try_catch_wrapper.util.js";
-import { get_long_url } from "../DAO/url_curd.dao.js";
+import { get_long_url } from "../DAO/url.dao.js";
 
 export const url_redirector = wrapAsync(async (req, res) => {
   const {short_url} = req.params;
