@@ -1,4 +1,3 @@
-import React from 'react'
 import { useRef, useState } from 'react';
 import { get_short_url } from '../api/short_url.api';
 
@@ -27,7 +26,7 @@ const UrlForm = () => {
   }
 
   return (
-    <>
+    <div>
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1">
@@ -74,7 +73,7 @@ const UrlForm = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

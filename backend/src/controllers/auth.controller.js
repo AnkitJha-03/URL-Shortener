@@ -41,3 +41,13 @@ export const logout = wrapAsync(async (req, res) => {
     message: "User logged out successfully"
   });
 });
+
+export const verify_user = wrapAsync(async (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "User verified successfully",
+    data: {
+      user: extract_user_data(req.user)
+    }
+  });
+});

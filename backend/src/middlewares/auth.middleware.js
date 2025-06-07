@@ -11,6 +11,7 @@ export const isAuthenticated = async (req, res, next) => {
     if(!user) throw new UnauthorizedError("Unauthorized access");
 
     req.user = user;
+    req.token = token;
     next();
   } catch {
     throw new UnauthorizedError("authentication failed");
