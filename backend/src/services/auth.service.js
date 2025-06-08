@@ -1,12 +1,17 @@
-import { create_user, get_user_by_email } from "../DAO/user.dao.js";
 import { UnauthorizedError } from "../utils/error_handler.util.js";
-import { hashed_password, compare_password, jwt_generator } from "../utils/helpers.util.js";
+import { create_user, get_user_by_email, update_user_refresh_token } from "../DAO/user.dao.js";
+import { hash_password, compare_password } from "../utils/helpers.util.js";
+import { generate_tokens } from "../utils/jwt.util.js";
+import { decode } from "jsonwebtoken";
 
 export const register_user = async (name, email, password) => {
-  const hash_password = await hashed_password(password);
-  const user = await create_user(name, email, hash_password);
-  const token = jwt_generator(user._id);
-  return {user, token};
+  const hashed_password = await hash_password(password);
+  const user = await create_user(name, email, hashed_password);
+
+  const {access_token, refresh_token} = generate_tokens(user._id);
+  await update_user_refresh_token(user, refresh_token);
+  
+  return {user, access_token, refresh_token};
 };
 
 // email verification
@@ -19,6 +24,8 @@ export const login_user = async (email, password) => {
   const is_password_correct = await compare_password(password, user.password);
   if(!is_password_correct) throw new UnauthorizedError("Invalid credentials");
 
-  const token = jwt_generator(user._id);
-  return {user, token};
+  const {access_token, refresh_token} = generate_tokens(user._id);
+  await update_user_refresh_token(user, refresh_token);
+
+  return {user, access_token, refresh_token};
 }

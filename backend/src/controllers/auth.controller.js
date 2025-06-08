@@ -1,53 +1,46 @@
 import wrapAsync from "../utils/try_catch_wrapper.util.js"
 import { register_user, login_user } from "../services/auth.service.js";
-import cookie_options from "../configs/cookie.config.js";
-import { extract_user_data } from "../utils/helpers.util.js";
+import { set_cookies, clear_cookies } from "../utils/cookies.util.js";
+import { format_user } from "../utils/helpers.util.js";
 
 export const register = wrapAsync(async (req, res) => {
   const {name, email, password} = req.body;
-  const {user, token} = await register_user(name, email, password);
+  const {user, access_tokens, refresh_token} = await register_user(name, email, password);
 
-  res.cookie("access_token", token, cookie_options);
+  set_cookies(res, access_tokens, refresh_token);
 
   res.status(201).json({
     success: true,
     message: "User created successfully",
     data: {
-      user: extract_user_data(user)
+      user: format_user(user)
     }
   });
 });
 
+// email verification
+// export const verify = wrapAsync(async (req, res) => {})
+
 export const login = wrapAsync(async (req, res) => {
   const {email, password} = req.body;
-  const {user, token} = await login_user(email, password);
-
-  res.cookie("access_token", token, cookie_options);
+  const {user, access_token, refresh_token} = await login_user(email, password);
+  
+  set_cookies(res, access_token, refresh_token);
 
   res.status(200).json({
     success: true,
     message: "User logged in successfully",
     data: {
-      user: extract_user_data(user)
+      user: format_user(user)
     }
   });
 });
 
 export const logout = wrapAsync(async (req, res) => {
-  res.clearCookie("access_token", cookie_options);
+  clear_cookies(res);
 
   res.status(200).json({
     success: true,
     message: "User logged out successfully"
-  });
-});
-
-export const verify_user = wrapAsync(async (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "User verified successfully",
-    data: {
-      user: extract_user_data(req.user)
-    }
   });
 });
