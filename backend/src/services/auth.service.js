@@ -1,5 +1,5 @@
 import { UnauthorizedError } from "../utils/error_handler.util.js";
-import { create_user, get_user_by_email, update_user_refresh_token } from "../DAO/user.dao.js";
+import { create_user, get_user_by_email, get_user_by_id, update_user_refresh_token } from "../DAO/user.dao.js";
 import { hash_password, compare_password } from "../utils/helpers.util.js";
 import { generate_tokens } from "../utils/jwt.util.js";
 import { decode } from "jsonwebtoken";
@@ -28,4 +28,9 @@ export const login_user = async (email, password) => {
   await update_user_refresh_token(user, refresh_token);
 
   return {user, access_token, refresh_token};
+}
+
+export const get_user = async (user_id) => {
+  const user = await get_user_by_id(user_id);
+  return user;
 }

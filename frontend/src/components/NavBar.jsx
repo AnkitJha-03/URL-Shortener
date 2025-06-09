@@ -8,10 +8,13 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const user = useAuthStore((state) => state.user);
 
   const onLogout = () => {
     setUserName('');
+    console.log("user : ", user);
     logout();
+    console.log("user : ", user);
     navigate({ to: '/auth' });
   }
 

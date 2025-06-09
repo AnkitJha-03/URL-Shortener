@@ -7,6 +7,8 @@ import { get_user_by_id, update_user_refresh_token } from "../DAO/user.dao.js";
 export const isAuthenticated = wrapAsync(async (req, res, next) => {
   const access_token = req.cookies.access_token;
   const refresh_token = req.cookies.refresh_token;
+  console.log("access_token : ", access_token);
+  console.log("refresh_token : ", refresh_token);
 
   if(!access_token && !refresh_token) throw new UnauthorizedError("Session expired");
   

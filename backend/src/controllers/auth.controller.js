@@ -1,5 +1,5 @@
 import wrapAsync from "../utils/try_catch_wrapper.util.js"
-import { register_user, login_user } from "../services/auth.service.js";
+import { register_user, login_user, get_user } from "../services/auth.service.js";
 import { set_cookies, clear_cookies } from "../utils/cookies.util.js";
 import { format_user } from "../utils/helpers.util.js";
 
@@ -42,5 +42,16 @@ export const logout = wrapAsync(async (req, res) => {
   res.status(200).json({
     success: true,
     message: "User logged out successfully"
+  });
+});
+
+export const refresh = wrapAsync(async (req, res) => {
+  const user = req.user || await get_user(req.user_id);
+  res.status(200).json({
+    success: true,
+    message: "User fetched successfully",
+    data: {
+      user: format_user(user)
+    }
   });
 });

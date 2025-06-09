@@ -5,7 +5,7 @@ const useAuthStore = create((set) => ({
   isLoggedIn: false,
   user: null,
 
-  login: ({ user, token }) =>
+  login: (user) =>
     set(() => ({
       isLoggedIn: true,
       user
@@ -20,7 +20,7 @@ const useAuthStore = create((set) => ({
     }))
   },
 
-  setUser: (user) =>
+  updateUser: (user) =>
     set(() => ({
       user
     })),

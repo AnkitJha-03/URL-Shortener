@@ -21,7 +21,9 @@ const LoginForm = ({setShowLogin}) => {
     
     try {
       const user = await login_user(email, password);
+      console.log("user : ", user);
       login(user);
+      console.log("user : ", user);
       navigate({ to: "/" });
     } catch (error) {
       setError(error.message || "Invalid credentials.");

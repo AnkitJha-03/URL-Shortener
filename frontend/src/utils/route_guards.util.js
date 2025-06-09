@@ -1,11 +1,8 @@
-import axios_instance from "./axios.util";
 import { redirect } from "@tanstack/react-router";
+import useAuthStore from "../stores/auth.store";
+import { refresh_user } from "../api/user.api";
 
 export const checkAuth = async () => {
-  try {
-    const auth = await axios_instance.get("/auth/verify", { withCredentials: true });
-    console.log(auth);
-  } catch (error) {
-    throw redirect({ to: "/auth" });
-  }
+  const isLoggedIn = useAuthStore.getState().isLoggedIn || await refresh_user();
+  if (!isLoggedIn) throw redirect({ to: "/auth" });
 };
