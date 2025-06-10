@@ -12,7 +12,7 @@ export const errorHandler = (err, req, res, next) => {
   });
 };
 
-export class AppError extends Error {
+export class ApiError extends Error {
   constructor(message, statusCode = 500, isOperational = true) {
     super(message);
     this.statusCode = statusCode;
@@ -21,31 +21,31 @@ export class AppError extends Error {
   }
 }
 
-export class BadRequestError extends AppError {
+export class BadRequestError extends ApiError {
   constructor(message = "Bad Request") {
     super(message, 400, true);
   }
 }
 
-export class UnauthorizedError extends AppError {
+export class UnauthorizedError extends ApiError {
   constructor(message = "Unauthorized") {
     super(message, 401, true);
   }
 }
 
-export class ForbiddenError extends AppError {
+export class ForbiddenError extends ApiError {
   constructor(message = "Forbidden") {
     super(message, 403, true);
   }
 }
 
-export class NotFoundError extends AppError {
+export class NotFoundError extends ApiError {
   constructor(message = "Not Found") {
     super(message, 404, true);
   }
 }
 
-export class ConflictError extends AppError {
+export class ConflictError extends ApiError {
   constructor(message = "Conflict") {
     super(message, 409, true);
   }

@@ -9,8 +9,8 @@ import connectDB from "./configs/db.config.js";
 
 // 3. Routes
 import auth_route from "./routes/auth.route.js";
-import url_creator_route from "./routes/url_creator.route.js";
-import url_redirector_route from "./routes/url_redirector.route.js";
+import url_route from "./routes/url.route.js";
+import redirector_route from "./routes/redirector.route.js";
 
 // 4. Utils
 import { errorHandler } from "./utils/error_handler.util.js";
@@ -32,9 +32,9 @@ connectDB();
 
 app.use("/api/v1/auth", auth_route);
 
-app.use("/api/v1/create", url_creator_route);
+app.use("/api/v1/url", url_route);
 
-app.use("/", url_redirector_route);
+app.use("/", redirector_route);
 
 
 app.use(errorHandler);

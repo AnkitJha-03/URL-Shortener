@@ -21,3 +21,7 @@ export const get_long_url = async (short_url) => {
 
   return url.long_url;
 }
+
+export const get_urls_by_user_id = async (user_id) => {
+  return await URL.find({user: user_id});
+}

@@ -2,21 +2,27 @@ import { create } from 'zustand'
 import { logout_user } from '../api/user.api'
 
 const useAuthStore = create((set) => ({
+  isAuthReady: false,
   isLoggedIn: false,
   user: null,
+  urls: [],
 
-  login: (user) =>
+  login: (user, urls) =>
     set(() => ({
+      isAuthReady: true,
       isLoggedIn: true,
-      user
+      user,
+      urls
     })),
 
   logout: async () => {
-    await logout_user()
+    if(useAuthStore.getState().isLoggedIn) await logout_user()
 
     set(() => ({
+      isAuthReady: true,
       isLoggedIn: false,
-      user: null
+      user: null,
+      urls: []
     }))
   },
 
@@ -24,6 +30,11 @@ const useAuthStore = create((set) => ({
     set(() => ({
       user
     })),
+
+  updateUrls: (urls) =>
+    set(() => ({
+      urls
+    }))
 }))
 
 export default useAuthStore

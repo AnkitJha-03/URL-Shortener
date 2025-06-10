@@ -34,10 +34,16 @@ const UrlForm = () => {
   }
 
   return (
-    <div className="min-h-svh bg-gray-100 flex flex-col items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="min-h-svh bg-gray-100 flex flex-col items-center pt-16">
+      <h1 className="text-2xl font-bold text-center mb-6">URL Shortener</h1>
+      <div className="bg-white p-8 lg:px-24 lg:py-16 rounded-lg shadow-md w-full max-w-screen-md">
         <form onSubmit={handleSubmit} className="space-y-4 ">
-          <h1 className="text-2xl font-bold text-center mb-6">URL Shortener</h1>
+
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+                {error}
+            </div>
+          )}
 
           <div>
             <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1"> Enter your URL </label>
@@ -91,6 +97,13 @@ const UrlForm = () => {
                 {copied ? 'Copied!' : 'Copy'}
               </button>
             </div>
+          </div>
+        )}
+      </div>
+
+      <div className="bg-white p-8 lg:p-16 rounded-lg shadow-md w-full max-w-screen-md mt-8">
+        { false && (
+          <div className="mt-4">
           </div>
         )}
       </div>

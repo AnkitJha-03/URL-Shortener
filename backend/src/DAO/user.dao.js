@@ -1,5 +1,5 @@
 import User from "../models/user_schema.model.js";
-import { AppError, ConflictError, NotFoundError } from "../utils/error_handler.util.js";
+import { ApiError, ConflictError, NotFoundError } from "../utils/error_handler.util.js";
 
 export const create_user = async (name, email, password) => {
   try {
@@ -10,7 +10,7 @@ export const create_user = async (name, email, password) => {
     await user.save();
     return user;
   } catch (error) {
-    throw new AppError("Internal server error");
+    throw new ApiError("Internal server error");
   }
 }
 

@@ -1,7 +1,6 @@
 import wrapAsync from "../utils/try_catch_wrapper.util.js";
-import short_url_generator from "../services/short_url.service.js";
-import { get_user_by_id } from "../DAO/user.dao.js";
 import { BadRequestError } from "../utils/error_handler.util.js";
+import { short_url_generator, get_all_urls} from "../services/short_url.service.js";
 
 const url_cleaner = (url) => {
   // Remove spaces at start and end
@@ -15,20 +14,31 @@ const url_cleaner = (url) => {
   return modified_url
 }
 
-export const url_creator = wrapAsync(async (req, res) => {
+export const create_url = wrapAsync(async (req, res) => {
   let {url, custom_short_url} = req.body;
   let user_id = req.user_id;
   custom_short_url = url_cleaner(custom_short_url);
 
-  const user = req.user || (await get_user_by_id(user_id));
-
-  const short_url = await short_url_generator(url, custom_short_url, user);
+  const short_url = await short_url_generator(url, custom_short_url, user_id);
 
   res.status(201).json({
     success: true,
     message: "Short URL created successfully",
     data: {
       short_url
+    }
+  });
+});
+
+export const get_urls = wrapAsync(async (req, res) => {
+  const user_id = req.user_id;
+  const urls = await get_all_urls(user_id);
+
+  res.status(200).json({
+    success: true,
+    message: "URLs fetched successfully",
+    data: {
+      urls
     }
   });
 });

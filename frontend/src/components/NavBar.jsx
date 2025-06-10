@@ -1,20 +1,15 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 import useAuthStore from "../stores/auth.store";
 
 
 const Navbar = () => {
-  const [userName, setUserName] = useState('');
   const navigate = useNavigate();
-  const logout = useAuthStore((state) => state.logout);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const user = useAuthStore((state) => state.user);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logout = useAuthStore((state) => state.logout);
 
   const onLogout = () => {
-    setUserName('');
-    console.log("user : ", user);
     logout();
-    console.log("user : ", user);
     navigate({ to: '/auth' });
   }
 
@@ -53,7 +48,7 @@ const Navbar = () => {
       <div className="flex items-center">
         {(isLoggedIn) ? (
           <div className="flex items-center space-x-4">
-            <span className="text-gray-700">Welcome, {userName || 'User'}</span>
+            <span className="text-gray-700">Welcome, {user?.name || 'User'}</span>
             <button
               onClick={onLogout}
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer"
