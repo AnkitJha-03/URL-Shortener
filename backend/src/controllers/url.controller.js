@@ -1,6 +1,6 @@
 import wrapAsync from "../utils/try_catch_wrapper.util.js";
 import { BadRequestError } from "../utils/error_handler.util.js";
-import { short_url_generator, get_all_urls} from "../services/short_url.service.js";
+import { short_url_generator, get_all_urls, delete_user_url} from "../services/short_url.service.js";
 
 const url_cleaner = (url) => {
   // Remove spaces at start and end
@@ -40,5 +40,16 @@ export const get_urls = wrapAsync(async (req, res) => {
     data: {
       urls
     }
+  });
+});
+
+export const delete_url = wrapAsync(async (req, res) => {
+  const short_url = req.params.short_url;
+  const user_id = req.user_id;
+  await delete_user_url(short_url, user_id);
+
+  res.status(200).json({
+    success: true,
+    message: "Short URL deleted successfully"
   });
 });

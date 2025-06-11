@@ -23,7 +23,7 @@ export const get_user_by_email = async (email) => {
 
 export const get_user_by_id = async (id) => {
   const user = await User.findById(id);
-  if(!User) throw new NotFoundError("User not found");
+  if(!user) throw new NotFoundError("User not found");
 
   return user;
 }

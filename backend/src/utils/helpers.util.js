@@ -15,7 +15,7 @@ export const compare_password = async (password, hash) => {
 
 export const format_user = (user) => {
   return {
-    id: user._id,
+    id: user._id || user.id,
     name: user.name,
     email: user.email
   }

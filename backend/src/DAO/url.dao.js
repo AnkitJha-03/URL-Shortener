@@ -25,3 +25,8 @@ export const get_long_url = async (short_url) => {
 export const get_urls_by_user_id = async (user_id) => {
   return await URL.find({user: user_id});
 }
+
+export const delete_short_url = async (short_url, user_id) => {
+  const result = await URL.deleteOne({short_url, user: user_id});
+  if(result.deletedCount === 0) throw new NotFoundError("URL not found or you do not have permission to delete it");
+}
