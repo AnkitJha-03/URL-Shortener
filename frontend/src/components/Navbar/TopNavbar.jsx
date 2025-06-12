@@ -38,7 +38,9 @@ const TopNavbar = () => {
           {/* Left side - Logo and Navigation */}
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">URL Shortener</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                URL Shortener
+              </span>
             </Link>
 
             {/* Primary Navigation */}
@@ -80,7 +82,9 @@ const TopNavbar = () => {
                   <div className="h-9 w-9 rounded-full bg-blue-100 flex items-center justify-center">
                     <span className="text-blue-600 font-medium">{user?.name?.charAt(0).toUpperCase() || "U"}</span>
                   </div>
-                  <FiChevronDown className={`h-4 w-4 text-gray-500 transition-transform ${isProfileOpen && "transform rotate-180"}`} />
+                  <FiChevronDown
+                    className={`h-4 w-4 text-gray-500 transition-transform ${isProfileOpen && "transform rotate-180"}`}
+                  />
                 </button>
 
                 {/* Profile dropdown */}

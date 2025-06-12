@@ -9,7 +9,7 @@ export const save_short_url = async (long_url, short_url, user) => {
       user,
     });
 
-    await new_url.save();
+    return await new_url.save();
   } catch (error) {
     throw new ConflictError("URL already exists");
   }

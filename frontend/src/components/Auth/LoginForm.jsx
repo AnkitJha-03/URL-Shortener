@@ -78,7 +78,9 @@ const LoginForm = ({ setShowLogin }) => {
                 className="w-full pl-10 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"
               />
             </div>
-            {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+            {field.state.meta.errors && (
+              <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>
+            )}
           </div>
         )}
       </form.Field>
@@ -102,14 +104,20 @@ const LoginForm = ({ setShowLogin }) => {
                 className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+            {field.state.meta.errors && (
+              <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>
+            )}
           </div>
         )}
       </form.Field>
 
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
-          <input id="remember-me" type="checkbox" className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+          <input
+            id="remember-me"
+            type="checkbox"
+            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
           <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
             Remember me
           </label>
@@ -129,7 +137,12 @@ const LoginForm = ({ setShowLogin }) => {
       >
         {form.state.isSubmitting ? (
           <>
-            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path
                 className="opacity-75"
@@ -146,7 +159,11 @@ const LoginForm = ({ setShowLogin }) => {
 
       <div className="mt-6 text-center text-sm text-gray-600">
         Don't have an account?{" "}
-        <button type="button" onClick={() => setShowLogin(false)} className="font-medium text-blue-600 hover:text-blue-500">
+        <button
+          type="button"
+          onClick={() => setShowLogin(false)}
+          className="font-medium text-blue-600 hover:text-blue-500"
+        >
           Register
         </button>
       </div>

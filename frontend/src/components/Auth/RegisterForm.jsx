@@ -87,7 +87,9 @@ const RegisterForm = ({ setShowLogin }) => {
                 className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+            {field.state.meta.errors && (
+              <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>
+            )}
           </div>
         )}
       </form.Field>
@@ -112,7 +114,9 @@ const RegisterForm = ({ setShowLogin }) => {
                 className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+            {field.state.meta.errors && (
+              <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>
+            )}
           </div>
         )}
       </form.Field>
@@ -137,7 +141,9 @@ const RegisterForm = ({ setShowLogin }) => {
                 className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+            {field.state.meta.errors && (
+              <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>
+            )}
           </div>
         )}
       </form.Field>
@@ -162,7 +168,9 @@ const RegisterForm = ({ setShowLogin }) => {
                 className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+            {field.state.meta.errors && (
+              <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>
+            )}
           </div>
         )}
       </form.Field>
@@ -177,7 +185,12 @@ const RegisterForm = ({ setShowLogin }) => {
         >
           {form.state.isSubmitting ? (
             <>
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path
                   className="opacity-75"
@@ -195,7 +208,11 @@ const RegisterForm = ({ setShowLogin }) => {
 
       <div className="mt-6 text-center text-sm text-gray-600">
         Don't have an account?{" "}
-        <button type="button" onClick={() => setShowLogin(true)} className="font-medium text-blue-600 hover:text-blue-500">
+        <button
+          type="button"
+          onClick={() => setShowLogin(true)}
+          className="font-medium text-blue-600 hover:text-blue-500"
+        >
           Register
         </button>
       </div>
