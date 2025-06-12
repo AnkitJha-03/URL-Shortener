@@ -1,14 +1,14 @@
 export const access_cookie_options = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "Lax",
+  sameSite: "None",
   maxAge: 1000 * 60 * 60, // 1 hr
 };
 
 export const refresh_cookie_options = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "Lax",
+  sameSite: "None",
   maxAge: 1000 * 60 * 60 * 24 * 2, // 2 day
 };
 

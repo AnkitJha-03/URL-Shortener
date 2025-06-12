@@ -45,7 +45,7 @@ const Pagination = ({
           >
             <FiChevronLeft className="h-5 w-5" />
           </button>
-          {Array.from({ length: totalPages }, (value, i) => value = i + 1).map((number) => (
+          {Array.from({ length: totalPages }, (value, i) => (value = i + 1)).map((number) => (
             <button
               key={number}
               onClick={() => paginate(number)}

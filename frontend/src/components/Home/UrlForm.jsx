@@ -96,14 +96,19 @@ const UrlForm = () => {
                 <label htmlFor="short_url" className="text-sm font-medium text-gray-700 mb-2">
                   Custom Back-Half (optional)
                 </label>
-                <input
-                  type="text"
-                  id="short_url"
-                  placeholder="your-custom-link"
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  className="block w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                />
+                <div className="flex rounded-md shadow-sm">
+                  <span className="hidden sm:inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm rounded-l-md">
+                    {import.meta.env.VITE_BACKEND_URL}
+                  </span>
+                  <input
+                    type="text"
+                    id="short_url"
+                    placeholder="your-custom-name"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    className="block w-full px-5 py-3 border border-gray-300 rounded-r-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  />
+                </div>
                 {field.state.meta.errors && (
                   <p className="text-sm text-red-600 mt-1">
                     {field.state.meta.errors.map((e) => e.message).join(", ")}
