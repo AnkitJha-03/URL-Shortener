@@ -3,6 +3,3 @@ node_modules
 
 # ignore env
 .env
-
-# ignore Dashboard for now
-Dashboard

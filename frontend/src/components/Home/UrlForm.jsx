@@ -81,11 +81,15 @@ const UrlForm = () => {
                   required
                   className="block w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+                {field.state.meta.errors && (
+                  <p className="text-sm text-red-600 mt-1">
+                    {field.state.meta.errors.map((e) => e.message).join(", ")}
+                  </p>
+                )}
               </div>
             )}
           </form.Field>
-          
+
           <form.Field name="short_url">
             {(field) => (
               <div>
@@ -100,7 +104,11 @@ const UrlForm = () => {
                   onChange={(e) => field.handleChange(e.target.value)}
                   className="block w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                {field.state.meta.errors && <p className="text-sm text-red-600 mt-1">{field.state.meta.errors.map((e) => e.message).join(", ")}</p>}
+                {field.state.meta.errors && (
+                  <p className="text-sm text-red-600 mt-1">
+                    {field.state.meta.errors.map((e) => e.message).join(", ")}
+                  </p>
+                )}
               </div>
             )}
           </form.Field>

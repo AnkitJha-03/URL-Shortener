@@ -44,12 +44,21 @@ export const get_urls = wrapAsync(async (req, res) => {
 });
 
 export const delete_url = wrapAsync(async (req, res) => {
-  const short_url = req.params.short_url;
   const user_id = req.user_id;
-  await delete_user_url(short_url, user_id);
+  const url_id = req.params.id;
+  await delete_user_url(url_id, user_id);
 
   res.status(200).json({
     success: true,
     message: "Short URL deleted successfully",
+  });
+});
+
+export const get_url_analytics = wrapAsync(async (_, res) => {
+  // TODO: Implement analytics fetching logic
+
+  res.status(501).json({
+    success: true,
+    message: "Service not implemented yet",
   });
 });

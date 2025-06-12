@@ -30,7 +30,7 @@ export const isAuthenticated = wrapAsync(async (req, res, next) => {
       const user = await get_user_by_id(user_id);
 
       if (!user) {
-        throw new UnauthorizedError("Invalid refresh token - user not found");
+        throw new UnauthorizedError("Invalid refresh token - please log in again");
       }
 
       if (user.refresh_token !== refresh_token) {
@@ -44,11 +44,7 @@ export const isAuthenticated = wrapAsync(async (req, res, next) => {
       req.user_id = user_id;
       return next();
     } catch (refreshTokenError) {
-      if (refreshTokenError instanceof UnauthorizedError) {
-        throw refreshTokenError;
-      }
-
-      throw new ApiError("Authentication failed", 500);
+      throw refreshTokenError;
     }
   }
 });

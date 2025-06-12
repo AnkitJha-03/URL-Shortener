@@ -36,10 +36,9 @@ const useAuthStore = create((set) => ({
       urls: [...state.urls, url],
     })),
 
-  removeUrl: (id) => {
-    console.log("Removing URL with ID:", id);
+  removeUrl: (rUrl) => {
     set((state) => ({
-      urls: state.urls.filter((url) => url.id !== id),
+      urls: state.urls.filter((url) => url._id !== rUrl._id),
     }));
   },
 }));
