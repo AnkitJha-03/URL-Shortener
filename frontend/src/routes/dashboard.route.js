@@ -7,5 +7,5 @@ export const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/Dashboard",
   component: Dashboard,
-  beforeLoad: () => protectRoute()
+  beforeLoad: () => protectRoute(),
 });

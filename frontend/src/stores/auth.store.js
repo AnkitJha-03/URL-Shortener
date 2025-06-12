@@ -1,5 +1,5 @@
-import { create } from 'zustand'
-import { logout_user } from '../api/user.api'
+import { create } from "zustand";
+import { logout_user } from "../api/user.api";
 
 const useAuthStore = create((set) => ({
   isAuthReady: false,
@@ -12,29 +12,36 @@ const useAuthStore = create((set) => ({
       isAuthReady: true,
       isLoggedIn: true,
       user,
-      urls
+      urls,
     })),
 
   logout: async () => {
-    if(useAuthStore.getState().isLoggedIn) await logout_user()
+    if (useAuthStore.getState().isLoggedIn) await logout_user();
 
     set(() => ({
       isAuthReady: true,
       isLoggedIn: false,
       user: null,
-      urls: []
-    }))
+      urls: [],
+    }));
   },
 
   updateUser: (user) =>
     set(() => ({
-      user
+      user,
     })),
 
-  updateUrls: (urls) =>
-    set(() => ({
-      urls
-    }))
-}))
+  addUrl: (url) =>
+    set((state) => ({
+      urls: [...state.urls, url],
+    })),
 
-export default useAuthStore
+  removeUrl: (id) => {
+    console.log("Removing URL with ID:", id);
+    set((state) => ({
+      urls: state.urls.filter((url) => url.id !== id),
+    }));
+  },
+}));
+
+export default useAuthStore;

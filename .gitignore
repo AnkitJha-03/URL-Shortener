@@ -3,3 +3,7 @@ node_modules
 
 # ignore env
 .env
+
+# ignore home and dashboard for now
+home
+Dashboard

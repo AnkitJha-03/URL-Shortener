@@ -15,16 +15,17 @@ import redirector_route from "./routes/redirector.route.js";
 // 4. Utils
 import { errorHandler } from "./utils/error_handler.util.js";
 
-
 const app = express();
 dotenv.config();
 
-app.use(express.json({limit: process.env.LIMIT}));
-app.use(urlencoded({extended: true, limit: process.env.LIMIT}));
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-}));
+app.use(express.json({ limit: process.env.LIMIT }));
+app.use(urlencoded({ extended: true, limit: process.env.LIMIT }));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
 // connection to database before starting the services
@@ -36,10 +37,9 @@ app.use("/api/v1/url", url_route);
 
 app.use("/", redirector_route);
 
-
 app.use(errorHandler);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log("Server is running on port : ", port);
-})
+});

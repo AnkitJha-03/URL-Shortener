@@ -1,21 +1,21 @@
 import wrapAsync from "../utils/try_catch_wrapper.util.js";
 import { BadRequestError } from "../utils/error_handler.util.js";
-import { short_url_generator, get_all_urls, delete_user_url} from "../services/short_url.service.js";
+import { short_url_generator, get_all_urls, delete_user_url } from "../services/short_url.service.js";
 
 const url_cleaner = (url) => {
   // Remove spaces at start and end
   let trimmed = url.trim();
   // Replace all groups of spaces/tabs/newlines inside with a single hyphen
-  let modified_url = trimmed.replace(/\s+/g, '-');
+  let modified_url = trimmed.replace(/\s+/g, "-");
   // Check if only allowed characters remain
   let allowed = /^[A-Za-z0-9_-]+$/;
-  if(modified_url && !allowed.test(modified_url)) throw new BadRequestError("Invalid Short Url");
+  if (modified_url && !allowed.test(modified_url)) throw new BadRequestError("Invalid Short Url");
 
-  return modified_url
-}
+  return modified_url;
+};
 
 export const create_url = wrapAsync(async (req, res) => {
-  let {url, custom_short_url} = req.body;
+  let { url, custom_short_url } = req.body;
   let user_id = req.user_id;
   custom_short_url = url_cleaner(custom_short_url);
 
@@ -25,8 +25,8 @@ export const create_url = wrapAsync(async (req, res) => {
     success: true,
     message: "Short URL created successfully",
     data: {
-      short_url
-    }
+      short_url,
+    },
   });
 });
 
@@ -38,8 +38,8 @@ export const get_urls = wrapAsync(async (req, res) => {
     success: true,
     message: "URLs fetched successfully",
     data: {
-      urls
-    }
+      urls,
+    },
   });
 });
 
@@ -50,6 +50,6 @@ export const delete_url = wrapAsync(async (req, res) => {
 
   res.status(200).json({
     success: true,
-    message: "Short URL deleted successfully"
+    message: "Short URL deleted successfully",
   });
 });

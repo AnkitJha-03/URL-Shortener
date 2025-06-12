@@ -2,12 +2,12 @@ import axios from "axios";
 
 const axios_instance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_API_URL,
-  timeout: 10000
+  timeout: 10000,
 });
 
 axios_instance.interceptors.response.use(
   (response) => response, // pass through success responses
-  
+
   (error) => {
     // Handle errors globally
     if (error.response) {

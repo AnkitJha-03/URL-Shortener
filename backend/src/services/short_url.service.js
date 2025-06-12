@@ -5,12 +5,12 @@ export const short_url_generator = async (url, custom_short_url, user_id) => {
   const short_url = custom_short_url || nanoid_generator(7);
   await save_short_url(url, short_url, user_id);
   return short_url;
-}
+};
 
 export const get_all_urls = async (user_id) => {
   return await get_urls_by_user_id(user_id);
-}
+};
 
 export const delete_user_url = async (short_url, user_id) => {
   await delete_short_url(short_url, user_id);
-}
+};

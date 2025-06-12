@@ -4,7 +4,7 @@ import { isAuthenticated } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/create", isAuthenticated, create_url)
+router.post("/create", isAuthenticated, create_url);
 router.get("/get_urls", isAuthenticated, get_urls);
 router.delete("/delete/:short_url", isAuthenticated, delete_url);
 
