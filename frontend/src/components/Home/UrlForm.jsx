@@ -39,7 +39,7 @@ const UrlForm = () => {
         addUrl(url_data);
         setCopied(false);
       } catch (error) {
-        setError(value.short_url ? "This short URL already exists" : "Something went wrong");
+        setError(error.response?.data?.statusCode === 401 ? "Please login to use this feature" : (error.response?.data?.message || "Something went wrong"));
       }
     },
   });

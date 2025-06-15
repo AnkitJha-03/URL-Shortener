@@ -207,13 +207,13 @@ const RegisterForm = ({ setShowLogin }) => {
       </div>
 
       <div className="mt-6 text-center text-sm text-gray-600">
-        Don't have an account?{" "}
+        Already have an account?{" "}
         <button
           type="button"
           onClick={() => setShowLogin(true)}
           className="font-medium text-blue-600 hover:text-blue-500"
         >
-          Register
+          Log in
         </button>
       </div>
     </form>
